@@ -6,7 +6,8 @@ import java.util.List;
 import com.blog.entity.User;
 
 public interface UserService {
-	 void register(User user);
-
+	 boolean register(User user);
+	 boolean login(User user);
+	 
 	
 }
