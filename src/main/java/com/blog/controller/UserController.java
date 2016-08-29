@@ -29,9 +29,9 @@ public class UserController extends BaseController{
 	
 	@RequestMapping("/test")
 	public void test(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		System.out.println("========/3333===");
+		System.out.println("========/test2222=========");
 		System.out.println("========/test=new===");
-		System.out.println("========/test2222=========");
-		System.out.println("========/test2222=========");
 		response.getWriter().write("test");
 	}
 }
