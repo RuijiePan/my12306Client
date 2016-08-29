@@ -8,5 +8,5 @@ import com.blog.entity.User;
 public interface UserService {
 	 void register(User user);
 
-	User test();
+	
 }
