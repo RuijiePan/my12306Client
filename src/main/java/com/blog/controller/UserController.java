@@ -29,7 +29,7 @@ public class UserController extends BaseController{
 	
 	@RequestMapping("/test")
 	public void test(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		System.out.println("========/test=========");
+		System.out.println("========/test======上传试试===");
 		response.getWriter().write("test");
 	}
 }
