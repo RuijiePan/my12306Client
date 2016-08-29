@@ -26,12 +26,13 @@ public class TestMyBatis {
   
     @Test  
     public void test1() {  
-        User user = userService.test();  
+        //User user = userService.test();  
         System.out.println("hahaha");
         // System.out.println(user.getUserName());  
         // logger.info("值："+user.getUserName());  
-        logger.info(JSON.toJSONString(user));  
-        System.out.println(user.getUsername());
+        //logger.info(JSON.toJSONString(user));  
+        //System.out.println("wym");
+        //System.out.println(user.getUsername());
     	//logger.info("dsas========test1========");
     }  
 }

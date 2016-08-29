@@ -18,11 +18,6 @@ public class UserServiceImpl implements UserService{
 	public void register(User user){
 		userDao.insert(user);
 	}
-	@Override
-	public User test(){
-		User user =  new User();
-		user.setUsername("username");
-		return user;
-	}
+
 
 }
