@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.Dao.TicketMapper" >
+  <resultMap id="BaseResultMap" type="com.blog.entity.Ticket" >
+    <id column="tid" property="tid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="zid" property="zid" jdbcType="INTEGER" />
+    <result column="sid_start" property="sidStart" jdbcType="INTEGER" />
+    <result column="sid_end" property="sidEnd" jdbcType="INTEGER" />
+    <result column="codenumber_start" property="codenumberStart" jdbcType="INTEGER" />
+    <result column="codenumber_end" property="codenumberEnd" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="ztype" property="ztype" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tid, cid, zid, sid_start, sid_end, codenumber_start, codenumber_end, status, ztype
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ticket
+    where tid = #{tid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ticket
+    where tid = #{tid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blog.entity.Ticket" >
+    insert into ticket (tid, cid, zid, 
+      sid_start, sid_end, codenumber_start, 
+      codenumber_end, status, ztype
+      )
+    values (#{tid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{zid,jdbcType=INTEGER}, 
+      #{sidStart,jdbcType=INTEGER}, #{sidEnd,jdbcType=INTEGER}, #{codenumberStart,jdbcType=INTEGER}, 
+      #{codenumberEnd,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{ztype,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blog.entity.Ticket" >
+    insert into ticket
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="zid != null" >
+        zid,
+      </if>
+      <if test="sidStart != null" >
+        sid_start,
+      </if>
+      <if test="sidEnd != null" >
+        sid_end,
+      </if>
+      <if test="codenumberStart != null" >
+        codenumber_start,
+      </if>
+      <if test="codenumberEnd != null" >
+        codenumber_end,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="ztype != null" >
+        ztype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="zid != null" >
+        #{zid,jdbcType=INTEGER},
+      </if>
+      <if test="sidStart != null" >
+        #{sidStart,jdbcType=INTEGER},
+      </if>
+      <if test="sidEnd != null" >
+        #{sidEnd,jdbcType=INTEGER},
+      </if>
+      <if test="codenumberStart != null" >
+        #{codenumberStart,jdbcType=INTEGER},
+      </if>
+      <if test="codenumberEnd != null" >
+        #{codenumberEnd,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ztype != null" >
+        #{ztype,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blog.entity.Ticket" >
+    update ticket
+    <set >
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="zid != null" >
+        zid = #{zid,jdbcType=INTEGER},
+      </if>
+      <if test="sidStart != null" >
+        sid_start = #{sidStart,jdbcType=INTEGER},
+      </if>
+      <if test="sidEnd != null" >
+        sid_end = #{sidEnd,jdbcType=INTEGER},
+      </if>
+      <if test="codenumberStart != null" >
+        codenumber_start = #{codenumberStart,jdbcType=INTEGER},
+      </if>
+      <if test="codenumberEnd != null" >
+        codenumber_end = #{codenumberEnd,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ztype != null" >
+        ztype = #{ztype,jdbcType=INTEGER},
+      </if>
+    </set>
+    where tid = #{tid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blog.entity.Ticket" >
+    update ticket
+    set cid = #{cid,jdbcType=INTEGER},
+      zid = #{zid,jdbcType=INTEGER},
+      sid_start = #{sidStart,jdbcType=INTEGER},
+      sid_end = #{sidEnd,jdbcType=INTEGER},
+      codenumber_start = #{codenumberStart,jdbcType=INTEGER},
+      codenumber_end = #{codenumberEnd,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      ztype = #{ztype,jdbcType=INTEGER}
+    where tid = #{tid,jdbcType=INTEGER}
+  </update>
+</mapper>

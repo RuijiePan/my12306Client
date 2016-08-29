@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.Dao.StationMapper" >
+  <resultMap id="BaseResultMap" type="com.blog.entity.Station" >
+    <id column="sid" property="sid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="premilege" property="premilege" jdbcType="DOUBLE" />
+    <result column="preprice" property="preprice" jdbcType="DOUBLE" />
+    <result column="codenumber" property="codenumber" jdbcType="INTEGER" />
+    <result column="arrivedate" property="arrivedate" jdbcType="VARCHAR" />
+    <result column="outbounddate" property="outbounddate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sid, cid, premilege, preprice, codenumber, arrivedate, outbounddate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from station
+    where sid = #{sid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from station
+    where sid = #{sid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blog.entity.Station" >
+    insert into station (sid, cid, premilege, 
+      preprice, codenumber, arrivedate, 
+      outbounddate)
+    values (#{sid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{premilege,jdbcType=DOUBLE}, 
+      #{preprice,jdbcType=DOUBLE}, #{codenumber,jdbcType=INTEGER}, #{arrivedate,jdbcType=VARCHAR}, 
+      #{outbounddate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blog.entity.Station" >
+    insert into station
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="premilege != null" >
+        premilege,
+      </if>
+      <if test="preprice != null" >
+        preprice,
+      </if>
+      <if test="codenumber != null" >
+        codenumber,
+      </if>
+      <if test="arrivedate != null" >
+        arrivedate,
+      </if>
+      <if test="outbounddate != null" >
+        outbounddate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="premilege != null" >
+        #{premilege,jdbcType=DOUBLE},
+      </if>
+      <if test="preprice != null" >
+        #{preprice,jdbcType=DOUBLE},
+      </if>
+      <if test="codenumber != null" >
+        #{codenumber,jdbcType=INTEGER},
+      </if>
+      <if test="arrivedate != null" >
+        #{arrivedate,jdbcType=VARCHAR},
+      </if>
+      <if test="outbounddate != null" >
+        #{outbounddate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blog.entity.Station" >
+    update station
+    <set >
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="premilege != null" >
+        premilege = #{premilege,jdbcType=DOUBLE},
+      </if>
+      <if test="preprice != null" >
+        preprice = #{preprice,jdbcType=DOUBLE},
+      </if>
+      <if test="codenumber != null" >
+        codenumber = #{codenumber,jdbcType=INTEGER},
+      </if>
+      <if test="arrivedate != null" >
+        arrivedate = #{arrivedate,jdbcType=VARCHAR},
+      </if>
+      <if test="outbounddate != null" >
+        outbounddate = #{outbounddate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blog.entity.Station" >
+    update station
+    set cid = #{cid,jdbcType=INTEGER},
+      premilege = #{premilege,jdbcType=DOUBLE},
+      preprice = #{preprice,jdbcType=DOUBLE},
+      codenumber = #{codenumber,jdbcType=INTEGER},
+      arrivedate = #{arrivedate,jdbcType=VARCHAR},
+      outbounddate = #{outbounddate,jdbcType=VARCHAR}
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+</mapper>

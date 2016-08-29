@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.Dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.blog.entity.Order" >
+    <id column="oid" property="oid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="ztype" property="ztype" jdbcType="INTEGER" />
+    <result column="startsite" property="startsite" jdbcType="VARCHAR" />
+    <result column="endsite" property="endsite" jdbcType="VARCHAR" />
+    <result column="znumber" property="znumber" jdbcType="VARCHAR" />
+    <result column="carriagenumber" property="carriagenumber" jdbcType="INTEGER" />
+    <result column="ttype" property="ttype" jdbcType="INTEGER" />
+    <result column="mileage" property="mileage" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oid, cid, uid, number, price, status, ztype, startsite, endsite, znumber, carriagenumber, 
+    ttype, mileage
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where oid = #{oid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order
+    where oid = #{oid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blog.entity.Order" >
+    insert into order (oid, cid, uid, 
+      number, price, status, 
+      ztype, startsite, endsite, 
+      znumber, carriagenumber, ttype, 
+      mileage)
+    values (#{oid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
+      #{number,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, #{status,jdbcType=INTEGER}, 
+      #{ztype,jdbcType=INTEGER}, #{startsite,jdbcType=VARCHAR}, #{endsite,jdbcType=VARCHAR}, 
+      #{znumber,jdbcType=VARCHAR}, #{carriagenumber,jdbcType=INTEGER}, #{ttype,jdbcType=INTEGER}, 
+      #{mileage,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blog.entity.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="ztype != null" >
+        ztype,
+      </if>
+      <if test="startsite != null" >
+        startsite,
+      </if>
+      <if test="endsite != null" >
+        endsite,
+      </if>
+      <if test="znumber != null" >
+        znumber,
+      </if>
+      <if test="carriagenumber != null" >
+        carriagenumber,
+      </if>
+      <if test="ttype != null" >
+        ttype,
+      </if>
+      <if test="mileage != null" >
+        mileage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ztype != null" >
+        #{ztype,jdbcType=INTEGER},
+      </if>
+      <if test="startsite != null" >
+        #{startsite,jdbcType=VARCHAR},
+      </if>
+      <if test="endsite != null" >
+        #{endsite,jdbcType=VARCHAR},
+      </if>
+      <if test="znumber != null" >
+        #{znumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carriagenumber != null" >
+        #{carriagenumber,jdbcType=INTEGER},
+      </if>
+      <if test="ttype != null" >
+        #{ttype,jdbcType=INTEGER},
+      </if>
+      <if test="mileage != null" >
+        #{mileage,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blog.entity.Order" >
+    update order
+    <set >
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ztype != null" >
+        ztype = #{ztype,jdbcType=INTEGER},
+      </if>
+      <if test="startsite != null" >
+        startsite = #{startsite,jdbcType=VARCHAR},
+      </if>
+      <if test="endsite != null" >
+        endsite = #{endsite,jdbcType=VARCHAR},
+      </if>
+      <if test="znumber != null" >
+        znumber = #{znumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carriagenumber != null" >
+        carriagenumber = #{carriagenumber,jdbcType=INTEGER},
+      </if>
+      <if test="ttype != null" >
+        ttype = #{ttype,jdbcType=INTEGER},
+      </if>
+      <if test="mileage != null" >
+        mileage = #{mileage,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blog.entity.Order" >
+    update order
+    set cid = #{cid,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE},
+      status = #{status,jdbcType=INTEGER},
+      ztype = #{ztype,jdbcType=INTEGER},
+      startsite = #{startsite,jdbcType=VARCHAR},
+      endsite = #{endsite,jdbcType=VARCHAR},
+      znumber = #{znumber,jdbcType=VARCHAR},
+      carriagenumber = #{carriagenumber,jdbcType=INTEGER},
+      ttype = #{ttype,jdbcType=INTEGER},
+      mileage = #{mileage,jdbcType=DOUBLE}
+    where oid = #{oid,jdbcType=INTEGER}
+  </update>
+</mapper>
