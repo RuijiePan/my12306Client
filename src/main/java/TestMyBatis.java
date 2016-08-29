@@ -30,9 +30,6 @@ public class TestMyBatis {
         // System.out.println(user.getUserName());  
         // logger.info("值："+user.getUserName());  
         logger.info(JSON.toJSONString(user));  
-        System.out.println("222222666");
-        System.out.println("33333666");
-        System.out.println("33333666");
         System.out.println(user.getUsername());
     	//logger.info("dsas========test1========");
     }  
