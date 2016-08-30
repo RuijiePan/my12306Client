@@ -26,6 +26,5 @@ public class TestMyBatis {
   
     @Test  
     public void test1() {  
-
     }  
 }
