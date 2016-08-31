@@ -11,6 +11,7 @@ import com.blog.service.UserService;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
+
 	@Resource
 	private UserMapper userDao;
 

@@ -16,7 +16,7 @@ import com.blog.utils.ResponseUtil;
  * 用户管理
  * @author GZS
  */
-//http://localhost:8080/wu/user/register?uid=1&username=1&password=1&nickname=1&idcard=1&email=1&identity=1&phone=1&url=1
+//http://localhost:8080/my12306/user/register?uid=1&username=1&password=1&nickname=1&idcard=1&email=1&identity=1&phone=1&url=1
 @Controller
 @RequestMapping("/user")
 public class UserController extends BaseController{
@@ -25,7 +25,7 @@ public class UserController extends BaseController{
 
 	@RequestMapping("/register")
 	public void register(User user,HttpServletRequest request,HttpServletResponse response){
-		userService.register(user);
+		boolean status = userService.register(user);
 		ResponseUtil responseUtil = new ResponseUtil(response);
 		MyResponse myResponse = new MyResponse();
 		myResponse.setData(user);
@@ -34,6 +34,7 @@ public class UserController extends BaseController{
 	
 	@RequestMapping("/test")
 	public void test(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		System.out.println("========/test2222=========");		response.getWriter().write("test");
+		System.out.println("========/test2222=========");
+		response.getWriter().write("test");
 	}
 }
