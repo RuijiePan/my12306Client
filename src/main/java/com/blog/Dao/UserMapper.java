@@ -14,4 +14,10 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    int selectByName(String username);
+
+    User selectByNamePwd(User user);
+
+    int getCount();
 }

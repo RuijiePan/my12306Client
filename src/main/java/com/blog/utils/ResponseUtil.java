@@ -11,16 +11,35 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 public class ResponseUtil{
+
+	private static ResponseUtil instance;
 	private HttpServletResponse response;
-	public ResponseUtil(HttpServletResponse response) {
-		this.response = response;
-		this.response.setCharacterEncoding("utf-8");
-		this.response.setContentType("application/json;charset=utf-8");
+
+	public static ResponseUtil getInstance(){
+		if(instance==null){
+			synchronized (ResponseUtil.class){
+				if (instance==null)
+					instance = new ResponseUtil();
+			}
+		}
+		return instance;
 	}
-	public void writeStringJson(String tojson){
+
+	private ResponseUtil() {
+
+	}
+
+	public ResponseUtil setResonse(HttpServletResponse response){
+		instance.response = response;
+		instance.response.setCharacterEncoding("utf-8");
+		instance.response.setContentType("application/json;charset=utf-8");
+		return instance;
+	}
+
+	public static void writeStringJson(String tojson){
 		PrintWriter out = null;
 		try {
-			out = response.getWriter();
+			out = instance.response.getWriter();
 			out.write(tojson);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -34,7 +53,7 @@ public class ResponseUtil{
 		String tojson = FastJsonUtil.toJson(myresponse);
 		PrintWriter out = null;
 		try {
-			out = response.getWriter();
+			out = instance.response.getWriter();
 			out.write(tojson);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -43,6 +62,12 @@ public class ResponseUtil{
 				out.close();
 			}
 		}
+	}
+
+	public void writeOTJson(HttpServletResponse response,Object myresponse){
+		ResponseUtil.getInstance()
+				.setResonse(response)
+				.writeObjectJson(myresponse);
 	}
 
 }

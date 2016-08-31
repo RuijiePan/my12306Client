@@ -21,6 +21,8 @@ public class User {
 
     private Integer status;
 
+    private String token;
+
     public Integer getUid() {
         return uid;
     }
@@ -99,5 +101,13 @@ public class User {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
