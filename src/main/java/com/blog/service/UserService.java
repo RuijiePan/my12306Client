@@ -4,10 +4,12 @@ package com.blog.service;
 import java.util.List;
 
 import com.blog.entity.User;
+import com.blog.myresponse.MyResponse;
 
 public interface UserService {
-	 boolean register(User user);
-	 boolean login(User user);
-	 
-	
+	 MyResponse register(User user);
+	 MyResponse login(User user);
+	 MyResponse quit(User user);
+	 MyResponse getInfo(User user);
+	 MyResponse updateInfo(User user);
 }

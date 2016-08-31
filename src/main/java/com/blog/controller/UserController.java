@@ -16,25 +16,50 @@ import com.blog.utils.ResponseUtil;
  * 用户管理
  * @author GZS
  */
-//http://localhost:8080/my12306/user/register?uid=1&username=1&password=1&nickname=1&idcard=1&email=1&identity=1&phone=1&url=1
+//http://localhost:8080/my12306/user/mine/register?username=1&password=1&nickname=1&idcard=1&email=1&identity=1&phone=1&url=1&status=1&token=1
 @Controller
 @RequestMapping("/user")
 public class UserController extends BaseController{
 	@Resource
 	private UserService userService;
 
-	@RequestMapping("/register")
+	@RequestMapping("/mine/register")
 	public void register(User user,HttpServletRequest request,HttpServletResponse response){
-		boolean status = userService.register(user);
-		ResponseUtil responseUtil = new ResponseUtil(response);
-		MyResponse myResponse = new MyResponse();
-		myResponse.setData(user);
-		responseUtil.writeObjectJson(myResponse);
+		ResponseUtil.getInstance()
+				.writeOTJson(response,userService.register(user));
 	}
-	
-	@RequestMapping("/test")
-	public void test(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		System.out.println("========/test2222=========");
-		response.getWriter().write("test");
+
+	@RequestMapping("/mine/login")
+	public void login(User user,HttpServletRequest request,HttpServletResponse response){
+		ResponseUtil.getInstance()
+				.writeOTJson(response,userService.login(user));
+	}
+
+	@RequestMapping("/mine/quit")
+	public void quit(User user,HttpServletRequest request,HttpServletResponse response){
+		ResponseUtil.getInstance()
+				.writeOTJson(response,userService.quit(user));
+	}
+
+	@RequestMapping("/mine/search_linkman")
+	public void search_linkman(User user,HttpServletRequest request,HttpServletResponse response){
+
+	}
+
+	@RequestMapping("/mine/search_personalinfo")
+	public void search_personalinfo(User user,HttpServletRequest request,HttpServletResponse response){
+		ResponseUtil.getInstance()
+				.writeOTJson(response,userService.getInfo(user));
+	}
+
+	@RequestMapping("/mine/update_personalinfo")
+	public void update_personalinfo(User user,HttpServletRequest request,HttpServletResponse response){
+		ResponseUtil.getInstance()
+				.writeOTJson(response,userService.updateInfo(user));
+	}
+
+	@RequestMapping("/mine/add_linkman")
+	public void add_linkman(User user,HttpServletRequest request,HttpServletResponse response){
+
 	}
 }
