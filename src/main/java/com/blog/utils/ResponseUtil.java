@@ -1,16 +1,11 @@
 package com.blog.utils;
 
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collection;
-import java.util.Locale;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-
-public class ResponseUtil{
+public class ResponseUtil {
 
 	private static ResponseUtil instance;
 	private HttpServletResponse response;
@@ -25,7 +20,7 @@ public class ResponseUtil{
 		return instance;
 	}
 
-	private ResponseUtil() {
+	public ResponseUtil() {
 
 	}
 

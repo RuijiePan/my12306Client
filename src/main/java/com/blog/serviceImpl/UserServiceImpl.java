@@ -1,22 +1,26 @@
 package com.blog.serviceImpl;
 
-import javax.annotation.Resource;
-
+import com.blog.Dao.LinkMapper;
+import com.blog.Dao.UserMapper;
+import com.blog.entity.Link;
+import com.blog.entity.User;
 import com.blog.myresponse.MyResponse;
-import com.blog.utils.CryptUtil;
+import com.blog.service.LinkService;
+import com.blog.service.UserService;
 import com.blog.utils.UUIDUtil;
 import org.springframework.stereotype.Service;
 
-import com.blog.Dao.UserMapper;
-import com.blog.entity.User;
-import com.blog.service.UserService;
+import javax.annotation.Resource;
+import java.util.List;
 
 
 @Service("userService")
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService,LinkService {
 
 	@Resource
 	private UserMapper userDao;
+	@Resource
+	private LinkMapper linkDao;
 
 	@Override
 	public MyResponse register(User user) {
@@ -112,4 +116,42 @@ public class UserServiceImpl implements UserService{
 		return myResponse;
 	}
 
+	@Override
+	public MyResponse getLinker(User user) {
+
+		MyResponse myResponse = new MyResponse();
+		User data = userDao.selectByPrimaryKey(user.getUid());
+		if(data.getToken().equals(user.getToken())) {
+			List<Link> list = linkDao.selectByUid(user.getUid());
+			if (list != null) {
+				myResponse.setData(list);
+			} else {
+				myResponse.setMsg("联系人列表为空");
+			}
+		}else {
+			myResponse.setStatus(MyResponse.ERROR);
+			myResponse.setMsg("无效的TOKEN");
+			myResponse.setErrortype("TOKEN错误");
+		}
+		return myResponse;
+	}
+
+	@Override
+	public MyResponse insertLinker(Link link){
+		MyResponse myResponse = new MyResponse();
+		if (linkDao.selectByIdcard(link.getIdcard())==null){
+			int count = linkDao.insert(link);
+			if(count!=0){
+				myResponse.setMsg("新增成功");
+			}else {
+				myResponse.setStatus(MyResponse.ERROR);
+				myResponse.setErrortype("");
+			}
+		}else {
+			myResponse.setStatus(MyResponse.ERROR);
+			myResponse.setErrortype("新增联系人失败");
+			myResponse.setMsg("该联系人已经存在");
+		}
+		return myResponse;
+	}
 }
