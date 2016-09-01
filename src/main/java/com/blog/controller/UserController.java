@@ -26,7 +26,7 @@ public class UserController extends BaseController {
 	@Resource
 	private LinkService linkService;
 
-	//http://172.18.0.139:8080/user/my12306/register?username=%E5%93%88%E5%93%88&password=131&phone=43423&nickname=12312&email=21321&idcard=21321&identity=12321&url=21312&status=21321&token=1
+	//http://172.18.0.139:8080/my12306/user/register?username=%E5%93%88%E5%93%88&password=131&phone=43423&nickname=12312&email=21321&idcard=21321&identity=12321&url=21312&status=21321&token=1
 	@RequestMapping("/register")
 	public void register(User user,HttpServletRequest request,HttpServletResponse response){
 		ResponseUtil.getInstance()

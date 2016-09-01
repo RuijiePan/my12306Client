@@ -24,6 +24,11 @@ public class UserServiceImpl implements UserService,LinkService {
 
 	@Override
 	public MyResponse register(User user) {
+
+		user.setUrl("");
+		user.setStatus(0);
+		user.setToken(UUIDUtil.createUUID());
+
 		MyResponse myResponse = new MyResponse();
 		if (userDao.selectByName(user.getUsername())==0) {
 			int index = userDao.insert(user);
@@ -35,6 +40,7 @@ public class UserServiceImpl implements UserService,LinkService {
 			myResponse.setStatus(MyResponse.ERROR);
 			myResponse.setMsg("该用户已经存在");
 		}
+		System.out.println(myResponse.toString());
 		return myResponse;
 	}
 
