@@ -137,20 +137,27 @@ public class UserServiceImpl implements UserService,LinkService {
 	}
 
 	@Override
-	public MyResponse insertLinker(Link link){
+	public MyResponse insertLinker(Link link,User user){
 		MyResponse myResponse = new MyResponse();
-		if (linkDao.selectByIdcard(link.getIdcard())==null){
-			int count = linkDao.insert(link);
-			if(count!=0){
-				myResponse.setMsg("新增成功");
-			}else {
+		User data = userDao.selectByPrimaryKey(user.getUid());
+		if(data.getToken().equals(user.getToken())) {
+			if (linkDao.selectByIdcard(link.getIdcard()) == null) {
+				int count = linkDao.insert(link);
+				if (count != 0) {
+					myResponse.setMsg("新增成功");
+				} else {
+					myResponse.setStatus(MyResponse.ERROR);
+					myResponse.setErrortype("");
+				}
+			} else {
 				myResponse.setStatus(MyResponse.ERROR);
-				myResponse.setErrortype("");
+				myResponse.setErrortype("新增联系人失败");
+				myResponse.setMsg("该联系人已经存在");
 			}
 		}else {
 			myResponse.setStatus(MyResponse.ERROR);
-			myResponse.setErrortype("新增联系人失败");
-			myResponse.setMsg("该联系人已经存在");
+			myResponse.setErrortype("TOKEN错误");
+			myResponse.setMsg("TOKEN无效");
 		}
 		return myResponse;
 	}

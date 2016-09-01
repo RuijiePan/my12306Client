@@ -7,5 +7,5 @@ import com.blog.myresponse.MyResponse;
 
 public interface LinkService {
 	MyResponse getLinker(User user);
-	MyResponse insertLinker(Link link);
+	MyResponse insertLinker(Link link, User user);
 }

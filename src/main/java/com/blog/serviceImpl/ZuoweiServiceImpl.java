@@ -1,15 +1,13 @@
 package com.blog.serviceImpl;
 
-import javax.annotation.Resource;
-
+import com.blog.Dao.ZuoweiMapper;
+import com.blog.service.ZuoweiService;
 import org.springframework.stereotype.Service;
 
-import com.blog.Dao.UserMapper;
-import com.blog.Dao.ZuoweiMapper;
-import com.blog.service.OrderService;
-import com.blog.service.ZuoweiService;
+import javax.annotation.Resource;
+
 @Service("zuoweiService")
-public class ZuoweiServiceImpl implements ZuoweiService{
+public class ZuoweiServiceImpl implements ZuoweiService {
 	@Resource
 	private ZuoweiMapper zuoweiDao;
 }

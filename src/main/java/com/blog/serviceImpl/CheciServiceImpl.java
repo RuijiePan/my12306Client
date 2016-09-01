@@ -1,15 +1,14 @@
 package com.blog.serviceImpl;
 
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
 import com.blog.Dao.CheciMapper;
 import com.blog.service.CheciService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 
 @Service("checiService")
-public class CheciServiceImpl implements CheciService{
+public class CheciServiceImpl implements CheciService {
 	@Resource
 	private CheciMapper CheciDao;
 
